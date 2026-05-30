@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#17211b" />
+    <title>日日理財</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="styles.css?v=5" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="setup-screen" id="setupScreen" aria-labelledby="setupTitle">
+        <div class="brand-mark" aria-hidden="true">$</div>
+        <h1 id="setupTitle">日日理財</h1>
+        <form class="setup-form" id="setupForm">
+          <label>
+            <span>你的名字</span>
+            <input id="nameInput" type="text" autocomplete="name" placeholder="例如：小安" required />
+          </label>
+          <label>
+            <span>目前存款</span>
+            <input id="savingsInput" type="number" inputmode="decimal" min="0" step="1" placeholder="0" required />
+          </label>
+          <button class="primary-button" type="submit">開始記帳</button>
+        </form>
+      </section>
+
+      <section class="main-screen hidden" id="mainScreen" aria-labelledby="homeTitle">
+        <header class="top-bar">
+          <div>
+            <p class="eyebrow" id="todayText"></p>
+            <h1 id="homeTitle"><span id="userName">你好</span>，今天也穩穩來</h1>
+          </div>
+          <button class="icon-button" id="resetButton" type="button" aria-label="重新設定" title="重新設定">
+            <span aria-hidden="true">↻</span>
+          </button>
+        </header>
+
+        <section class="balance-panel" aria-labelledby="balanceTitle">
+          <p id="balanceTitle">目前總資產</p>
+          <output id="balanceOutput">$0</output>
+        </section>
+
+        <form class="entry-panel" id="entryForm">
+          <label class="amount-label" for="amountInput">今日金額</label>
+          <div class="amount-row">
+            <input id="amountInput" type="number" inputmode="decimal" min="0" step="1" placeholder="輸入金額" required />
+            <div class="type-toggle" role="radiogroup" aria-label="類型">
+              <label>
+                <input type="radio" name="entryType" value="expense" checked />
+                <span>花費</span>
+              </label>
+              <label>
+                <input type="radio" name="entryType" value="income" />
+                <span>收入</span>
+              </label>
+            </div>
+          </div>
+          <label class="purpose-label" for="purposeInput">
+            <span>款項用途</span>
+            <input id="purposeInput" type="text" maxlength="40" placeholder="例如：午餐、薪水、交通費" required />
+          </label>
+          <button class="primary-button" type="submit">新增一筆</button>
+        </form>
+
+        <nav class="bottom-nav" aria-label="主要頁面">
+          <button class="nav-button active" id="homeTab" type="button" aria-pressed="true">
+            <span aria-hidden="true">⌂</span>
+            首頁
+          </button>
+          <button class="nav-button" id="recordsTab" type="button" aria-pressed="false">
+            <span aria-hidden="true">▤</span>
+            記帳
+          </button>
+        </nav>
+      </section>
+
+      <section class="records-screen hidden" id="recordsScreen" aria-labelledby="recordsTitle">
+        <header class="top-bar">
+          <div>
+            <p class="eyebrow">理財紀錄</p>
+            <h1 id="recordsTitle">每一筆都看得見</h1>
+          </div>
+          <button class="icon-button" id="backHomeButton" type="button" aria-label="回首頁" title="回首頁">
+            <span aria-hidden="true">⌂</span>
+          </button>
+        </header>
+
+        <section class="summary-strip" aria-label="收支摘要">
+          <div>
+            <span>收入</span>
+            <strong id="incomeTotal">$0</strong>
+          </div>
+          <div>
+            <span>支出</span>
+            <strong id="expenseTotal">$0</strong>
+          </div>
+        </section>
+
+        <section class="month-nav" id="monthNav" aria-label="月份快速跳轉">
+          <button class="month-button" type="button" data-month="0">1月</button>
+          <button class="month-button" type="button" data-month="1">2月</button>
+          <button class="month-button" type="button" data-month="2">3月</button>
+          <button class="month-button" type="button" data-month="3">4月</button>
+          <button class="month-button" type="button" data-month="4">5月</button>
+          <button class="month-button" type="button" data-month="5">6月</button>
+          <button class="month-button" type="button" data-month="6">7月</button>
+          <button class="month-button" type="button" data-month="7">8月</button>
+          <button class="month-button" type="button" data-month="8">9月</button>
+          <button class="month-button" type="button" data-month="9">10月</button>
+          <button class="month-button" type="button" data-month="10">11月</button>
+          <button class="month-button" type="button" data-month="11">12月</button>
+        </section>
+        <div class="month-records" id="recordList"></div>
+        <p class="empty-state" id="emptyState">尚無紀錄</p>
+
+        <nav class="bottom-nav" aria-label="主要頁面">
+          <button class="nav-button" id="recordsHomeTab" type="button" aria-pressed="false">
+            <span aria-hidden="true">⌂</span>
+            首頁
+          </button>
+          <button class="nav-button active" type="button" aria-pressed="true">
+            <span aria-hidden="true">▤</span>
+            記帳
+          </button>
+        </nav>
+      </section>
+    </main>
+
+    <script src="app.js?v=5"></script>
+  </body>
+</html>
